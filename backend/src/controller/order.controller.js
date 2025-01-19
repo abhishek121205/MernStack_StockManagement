@@ -8,6 +8,9 @@ const makeOrder = asyncHandler(async (req, res) => { //includes req.user._id
 
     const { perProductPrice, addedStockNumber, productId } = req.body;
 
+    if (perProductPrice < 0) throw new Error("Invalid Price");
+    if (addedStockNumber < 0) throw new Error("Invalid quantity");
+
     const fields = [perProductPrice, addedStockNumber, productId];
     if (fields.some((val) => typeof val === "string" && val.trim() === "" || val == null)) {
         throw new Error("All Fields are required");
@@ -26,6 +29,9 @@ const makeOrder = asyncHandler(async (req, res) => { //includes req.user._id
     }
 
     const createOrder = await Order.create(orderPayload)
+
+    isStockManageable.addedStock += parseInt(addedStockNumber)
+    await isStockManageable.save({ validateBeforeSave: false })
 
     return res.status(201).json({
         message: "Order created successfully",

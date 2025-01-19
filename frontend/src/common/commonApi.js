@@ -37,6 +37,10 @@ export const SummaryApi = {
         url: `${backendUrl}/products/updateProduct`,
         method: "PATCH"
     },
+    getStock: {
+        url: `${backendUrl}/products/getStock`,
+        method: "GET"
+    },
 
     // order routers
     makeOrder: {

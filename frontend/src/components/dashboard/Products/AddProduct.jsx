@@ -84,11 +84,11 @@ const AddProduct = ({ onClose, fetchAllProducts }) => {
                     ></textarea>
 
                     <div>
-                        <label htmlFor="stockManagement" className='dark:text-white font-semibold'>Stock management:</label>
+                        <label className='dark:text-white font-semibold'>Stock management:</label>
                         <h1 className='flex items-center dark:text-white'>True:
                             <input type="radio" name='stockManagement'
                                 onChange={handleOnChange}
-                                id='stockManagement' value={true}
+                                value={true}
                                 checked={product.stockManagement == 'true'}
                                 className='bg-red-700 ms-1 mt-1' style={{ width: "15px", height: "15px" }}
                             />
@@ -97,7 +97,7 @@ const AddProduct = ({ onClose, fetchAllProducts }) => {
                             <input type="radio" name='stockManagement'
                                 onChange={handleOnChange}
                                 checked={product.stockManagement == 'false'}
-                                id='stockManagement' value={false}
+                                value={false}
                                 className='bg-red-700 ms-1 mt-1' style={{ width: "15px", height: "15px" }}
                             />
                         </h1>

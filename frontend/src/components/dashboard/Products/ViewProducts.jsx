@@ -48,6 +48,20 @@ const ViewProducts = () => {
     }
   }
 
+  const checkStock = async (id) => {
+    const apiData = await fetch(`${SummaryApi.getStock.url}/${id}`, {
+      method: SummaryApi.getStock.method,
+      credentials: "include"
+    })
+    const response = await apiData.json()
+    if (response.success) {
+      toast.success(response.message)
+    }
+    if (response.error) {
+      toast.error(response.message)
+    }
+  }
+
   useEffect(() => {
     fetchAllProducts()
   }, [])
@@ -69,7 +83,7 @@ const ViewProducts = () => {
                 <div className={val?.stockManagement == true ? 'flex justify-between items-center mt-3' : 'flex justify-end items-center mt-3'}>
                   {
                     val?.stockManagement == true && (
-                      <h2 className='dark:text-white'>Stock: {val?.numberOfStock}</h2>
+                      <h2 className='dark:text-white cursor-pointer' onClick={() => checkStock(val?._id)}>Stock: {val?.numberOfStock}</h2>
                     )
                   }
                   <div className='flex gap-2'>

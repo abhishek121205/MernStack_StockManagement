@@ -26,6 +26,10 @@ const productSchema = new Schema({
     numberOfStock:{
         type: Number,
         default:0
+    },
+    addedStock:{
+        type:Number,
+        default:0
     }
 }, {
     timestamps: true
